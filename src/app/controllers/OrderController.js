@@ -1,7 +1,7 @@
+import Order from '../models/Order.js';
 import * as Yup from 'yup';
 import Product from '../models/Product.js';
 import Category from '../models/Category.js';
-import Order from '../schemas/Order.js';
 class OrderContoller {
   async store(request, response) {
    const schema = Yup.object({
@@ -57,7 +57,7 @@ class OrderContoller {
       
     });
 
-    const order = {
+    const orderData = {
       user: {
         id: userId,
         name: userName,
@@ -66,7 +66,7 @@ class OrderContoller {
       status: 'Pedido recebido',
     };
 
-  const newOrder = await Order.create(order);
+  const newOrder = await Order.create(orderData);
       
 
       return response.status(201).json(newOrder);
@@ -88,7 +88,8 @@ class OrderContoller {
     const { id } = request.params;
 
     try {
-    await Order.updateOne({ _id: id }, { status });
+    await Order.update({ status }, { where: { id } });
+
 
     } catch (err) {
       return response.status(400).json({ error: err.message });
@@ -98,12 +99,17 @@ class OrderContoller {
   }
 
   async index(_request, response) {
-    const orders = await Order.find()
+   const orders = await Order.findAll();
 
-   return response.status(200).json(orders);
+return response.status(200).json(orders);
+
+
+   
   } 
   
 } 
+
+
     
 
 export default new OrderContoller();

@@ -15,6 +15,11 @@ class CategoryController {
     }
 
     const { name } = request.body;
+
+    if (!request.file) {
+      return response.status(400).json({ message: 'Image is required' });
+    }
+
     const { filename } = request.file;
 
     const existingCategory = await Category.findOne({ where: { name } });
