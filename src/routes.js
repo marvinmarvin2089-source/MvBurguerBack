@@ -15,6 +15,7 @@ import OrderController from './app/controllers/OrderController.js';
 import ProductController from './app/controllers/ProductController.js';
 import SessionController from './app/controllers/SessionController.js';
 import UserController from './app/controllers/UserController.js';
+import CreatePaymentIntentController from './app/controllers/stripe/CreatePaymentIntentController.js';
 
 // models
 import Product from './app/models/Product.js';
@@ -64,7 +65,9 @@ routes.get('/categories', CategoryController.index);
 // pedidos
 routes.post('/orders', OrderController.store);
 routes.get('/orders', OrderController.index);
-routes.put('/orders/:id', adminMiddleware, OrderController.update);
+routes.put('/orders/:id', OrderController.update);
+
+routes.post('/create-payment-intent', CreatePaymentIntentController.store);
 
 // DELETE TODOS PRODUTOS
 routes.delete('/products', adminMiddleware, async (_req, res) => {
@@ -77,5 +80,7 @@ routes.delete('/categories', adminMiddleware, async (_req, res) => {
   await Category.destroy({ where: {} });
   res.json({ message: 'Categorias deletadas' });
 });
+
+
 
 export default routes;

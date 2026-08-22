@@ -4,7 +4,8 @@ import Product from '../models/Product.js';
 import Category from '../models/Category.js';
 class OrderContoller {
   async store(request, response) {
-   const schema = Yup.object({
+
+   const schema = Yup.object().shape({
       products: Yup.array().required().of(
         Yup.object().shape({
           id: Yup.number().required(),
@@ -66,14 +67,22 @@ class OrderContoller {
       status: 'Pedido recebido',
     };
 
+    try {
   const newOrder = await Order.create(orderData);
       
 
       return response.status(201).json(newOrder);
+  } catch (err) {
+  console.error('Erro ao criar pedido:', err.message);
+  console.error('Detalhes:', err.original || err.parent);
+  return response.status(500).json({ error: err.message });
+
+    }
   }
 
+
   async update(request, response) {
-    const schema = Yup.object({
+    const schema = Yup.object().shape({
       status: Yup.string().required()
     });
 
