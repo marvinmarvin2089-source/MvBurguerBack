@@ -1,5 +1,7 @@
 # DevBurger API
 
+![DevBurger](docs/devburger-cover.png)
+
 Backend REST de uma hamburgueria digital, desenvolvido para demonstrar um fluxo completo de e-commerce: autenticação, catálogo, carrinho, pedidos, painel administrativo e pagamentos online.
 
 ## Destaques técnicos
