@@ -18,7 +18,7 @@ class UserController {
       return response.status(400).json({ message: err.errors });
     }
 
-    const { name, email, password, admin } = request.body;
+    const { name, email, password } = request.body;
 
     const existingUser = await User.findOne({ where: { email } });
 
@@ -35,7 +35,7 @@ class UserController {
       name,
       email,
       password_hash,
-      admin,
+      admin: false,
     });
 
     return response.status(201).json({

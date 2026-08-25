@@ -7,10 +7,9 @@ class Order extends Model {
         user: Sequelize.JSON,
         products: Sequelize.JSON,
         status: Sequelize.STRING,
+        payment_intent_id: Sequelize.STRING,
       },
-      {
-        sequelize,
-      },
+      { sequelize, tableName: 'orders', timestamps: true, underscored: true },
     );
     return this;
   }

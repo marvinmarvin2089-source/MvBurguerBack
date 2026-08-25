@@ -1,12 +1,15 @@
 {
   "name": "mvburguerback",
   "version": "1.0.0",
-  "description": "",
+  "description": "REST API para uma hamburgueria digital com autenticação, pedidos, painel administrativo e pagamentos via Stripe",
   "main": "src/server.js",
   "scripts": {
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "check": "biome check src",
+    "format": "biome format --write src"
   },
-  "keywords": [],
+  "keywords": ["nodejs", "express", "sequelize", "postgresql", "stripe", "jwt", "e-commerce"],
   "author": "",
   "license": "ISC",
   "type": "module",

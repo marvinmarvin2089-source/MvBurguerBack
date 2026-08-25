@@ -1,12 +1,11 @@
 const adminMiddleware = (request, response, next) => {
-    const isUserAdmin = request.userAdmin;
+  const isUserAdmin = request.userAdmin;
 
-if (!isUserAdmin) {
-    return response.status(403).json({ error: 'Acesso negado: apenas admin'});
-}
+  if (!isUserAdmin) {
+    return response.status(403).json({ error: 'Acesso negado: apenas admin' });
+  }
 
-return next();
-
+  return next();
 };
 
 export default adminMiddleware;

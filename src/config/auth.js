@@ -1,4 +1,10 @@
+const secret = process.env.JWT_SECRET;
+
+if (!secret) {
+  throw new Error('JWT_SECRET não configurado nas variáveis de ambiente');
+}
+
 export default {
-    secret: 'e4835eb429850110e8145e207c0b5227',
-    expiresIn: '7d',
+  secret,
+  expiresIn: process.env.JWT_EXPIRES_IN || '7d',
 };

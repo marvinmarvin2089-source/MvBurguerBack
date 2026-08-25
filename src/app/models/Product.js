@@ -1,4 +1,4 @@
-import Sequelize, { Model } from "sequelize";
+import Sequelize, { Model } from 'sequelize';
 
 class Product extends Model {
   static init(sequelize) {
@@ -17,17 +17,20 @@ class Product extends Model {
       },
       {
         sequelize,
-        tableName: "products",
+        tableName: 'products',
         timestamps: true,
         underscored: false,
-      }
+      },
     );
 
     return this;
   }
 
   static associate(models) {
-    this.belongsTo(models.Category, { foreignKey: "category_id", as: "category", });
+    this.belongsTo(models.Category, {
+      foreignKey: 'category_id',
+      as: 'category',
+    });
   }
 }
 

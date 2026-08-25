@@ -1,4 +1,4 @@
-import Sequelize, { Model } from "sequelize";
+import Sequelize, { Model } from 'sequelize';
 
 class Category extends Model {
   static init(sequelize) {
@@ -7,19 +7,18 @@ class Category extends Model {
         name: Sequelize.STRING,
         path: Sequelize.STRING,
         url: {
-                  type: Sequelize.VIRTUAL,
-                  get() {
-                    return `http://localhost:3001/category-files/${this.path}`;
-                  },
-                },
+          type: Sequelize.VIRTUAL,
+          get() {
+            return `http://localhost:3001/category-files/${this.path}`;
+          },
+        },
       },
       {
         sequelize,
-        tableName: "categories",
+        tableName: 'categories',
         timestamps: true,
         underscored: true,
-      
-      }
+      },
     );
 
     return this;
