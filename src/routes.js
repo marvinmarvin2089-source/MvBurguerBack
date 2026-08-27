@@ -25,6 +25,11 @@ const upload = multer(multerConfig);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
+// leitura pública do cardápio
+routes.get('/products', ProductController.index);
+routes.get('/categories', CategoryController.index);
+
+
 // protegidas, será chamada por todas as rotas abaixo, ela pede o token.
 routes.use(authMiddleware);
 
@@ -42,7 +47,6 @@ routes.put(
   upload.single('file'),
   ProductController.update,
 );
-routes.get('/products', ProductController.index);
 
 // categorias
 routes.post(
@@ -57,7 +61,6 @@ routes.put(
   upload.single('file'),
   CategoryController.update,
 );
-routes.get('/categories', CategoryController.index);
 
 // pedidos
 routes.post('/orders', OrderController.store);
