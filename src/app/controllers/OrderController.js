@@ -67,6 +67,7 @@ class OrderContoller {
       },
       products: mapedProducts,
       status: 'Pedido recebido',
+      payment_status: 'Pendente',
       payment_intent_id: paymentIntentId,
     };
 
@@ -86,8 +87,6 @@ class OrderContoller {
       status: Yup.string()
         .oneOf([
           'Pedido recebido',
-          'Pagamento aprovado',
-          'Pagamento falhou',
           'Em preparação',
           'A caminho',
           'Concluído',

@@ -23,7 +23,7 @@ Backend REST de uma hamburgueria digital, desenvolvido para demonstrar um fluxo 
 2. O Stripe Payment Intent é criado em modo de teste.
 3. O frontend confirma o pagamento com Stripe Elements.
 4. O Stripe CLI encaminha os eventos para o webhook local.
-5. O webhook valida a assinatura e atualiza o pedido para `Pagamento aprovado` ou `Pagamento falhou`.
+5. O webhook valida a assinatura e atualiza `payment_status` para `Aprovado` ou `Falhou`, sem alterar o andamento do pedido.
 
 ## Stack
 

@@ -29,7 +29,6 @@ routes.post('/sessions', SessionController.store);
 routes.get('/products', ProductController.index);
 routes.get('/categories', CategoryController.index);
 
-
 // protegidas, será chamada por todas as rotas abaixo, ela pede o token.
 routes.use(authMiddleware);
 

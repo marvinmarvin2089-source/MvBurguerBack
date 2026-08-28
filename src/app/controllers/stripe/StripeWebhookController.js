@@ -35,7 +35,7 @@ class StripeWebhookController {
       if (event.type === 'payment_intent.succeeded') {
         const paymentIntent = event.data.object;
         await Order.update(
-          { status: 'Pagamento aprovado' },
+          { payment_status: 'Aprovado' },
           { where: { payment_intent_id: paymentIntent.id } },
         );
       }
@@ -43,7 +43,7 @@ class StripeWebhookController {
       if (event.type === 'payment_intent.payment_failed') {
         const paymentIntent = event.data.object;
         await Order.update(
-          { status: 'Pagamento falhou' },
+          { payment_status: 'Falhou' },
           { where: { payment_intent_id: paymentIntent.id } },
         );
       }
