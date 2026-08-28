@@ -1,7 +1,13 @@
+import Stripe from 'stripe';
+import 'dotenv/config';
 import * as Yup from 'yup';
 import Category from '../models/Category.js';
 import Order from '../models/order.js';
 import Product from '../models/Product.js';
+
+const stripe = process.env.STRIPE_SECRET_KEY
+  ? new Stripe(process.env.STRIPE_SECRET_KEY)
+  : null;
 
 class OrderContoller {
   async store(request, response) {
@@ -28,6 +34,30 @@ class OrderContoller {
 
     const { userId, userName } = request;
     const { products, paymentIntentId } = request.body;
+
+    if (!stripe) {
+      return response.status(500).json({ error: 'Pagamento não configurado' });
+    }
+
+    let paymentIntent;
+    try {
+      paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    } catch (_error) {
+      return response.status(400).json({
+        error: 'PaymentIntent inválido ou não encontrado',
+      });
+    }
+
+    if (paymentIntent.metadata?.userId !== String(userId)) {
+      return response.status(403).json({ error: 'Acesso negado' });
+    }
+
+    const paymentStatus =
+      paymentIntent.status === 'succeeded'
+        ? 'Aprovado'
+        : paymentIntent.status === 'requires_payment_method'
+          ? 'Falhou'
+          : 'Pendente';
 
     const productIds = products.map((product) => product.id);
 
@@ -67,7 +97,7 @@ class OrderContoller {
       },
       products: mapedProducts,
       status: 'Pedido recebido',
-      payment_status: 'Pendente',
+      payment_status: paymentStatus,
       payment_intent_id: paymentIntentId,
     };
 
