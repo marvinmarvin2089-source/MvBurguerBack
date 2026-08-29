@@ -119,7 +119,7 @@ class OrderContoller {
           'Pedido recebido',
           'Em preparação',
           'A caminho',
-          'Concluído',
+          'Entregue',
           'Cancelado',
         ])
         .required(),
