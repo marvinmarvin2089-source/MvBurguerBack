@@ -11,10 +11,6 @@ import UserController from './app/controllers/UserController.js';
 // middlewares
 import adminMiddleware from './app/middlewares/admin.js';
 import authMiddleware from './app/middlewares/auth.js';
-import Category from './app/models/Category.js';
-
-// models
-import Product from './app/models/Product.js';
 // configs
 import multerConfig from './config/multer.cjs';
 
@@ -68,17 +64,5 @@ routes.put('/orders/:id', adminMiddleware, OrderController.update);
 
 routes.post('/create-payment-intent', CreatePaymentIntentController.store);
 routes.get('/payments/:paymentIntentId', CreatePaymentIntentController.show);
-
-// DELETE TODOS PRODUTOS
-routes.delete('/products', adminMiddleware, async (_req, res) => {
-  await Product.destroy({ where: {} });
-  res.json({ message: 'Produtos deletados' });
-});
-
-// DELETE TODAS CATEGORIAS
-routes.delete('/categories', adminMiddleware, async (_req, res) => {
-  await Category.destroy({ where: {} });
-  res.json({ message: 'Categorias deletadas' });
-});
 
 export default routes;
