@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import Category from '../models/Category.js';
-import Product from '../models/Product.js';
 
 class CategoryController {
   async store(request, response) {
@@ -87,35 +86,6 @@ class CategoryController {
     const categories = await Category.findAll();
 
     return response.status(200).json(categories);
-  }
-
-  async delete(request, response) {
-    const { id } = request.params;
-
-    // 1. verifica se existe
-    const category = await Category.findByPk(id);
-
-    if (!category) {
-      return response.status(404).json({
-        message: 'Categoria não encontrada',
-      });
-    }
-
-    // 2. verifica se tem produtos
-    const hasProducts = await Product.findOne({
-      where: { category_id: id },
-    });
-
-    if (hasProducts) {
-      return response.status(400).json({
-        message: 'Não é possível deletar categoria com produtos',
-      });
-    }
-
-    // 3. deletar
-    await category.destroy();
-
-    return response.status(204).json(); // sem conteúdo
   }
 }
 
