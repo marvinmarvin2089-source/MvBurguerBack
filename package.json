@@ -10,18 +10,24 @@
     "check": "biome check src",
     "format": "biome format --write src"
   },
-  "keywords": ["nodejs", "express", "sequelize", "postgresql", "stripe", "jwt", "e-commerce"],
+  "keywords": [
+    "nodejs",
+    "express",
+    "sequelize",
+    "postgresql",
+    "stripe",
+    "jwt",
+    "e-commerce"
+  ],
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "bcrypt": "^6.0.0",
     "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
-    "mongoose": "^9.4.1",
     "multer": "^2.1.1",
     "pg": "^8.20.0",
     "pg-hstore": "^2.3.4",
@@ -32,7 +38,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.7",
-    "@types/express": "^5.0.6",
     "sequelize-cli": "^6.6.5"
   }
 }
