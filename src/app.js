@@ -6,7 +6,22 @@ import routes from './routes.js';
 
 const app = express();
 
-app.use(cors());
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  'http://localhost:5173',
+].filter(Boolean);
+
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error('Origem não permitida pelo CORS'));
+    },
+  }),
+);
 app.post(
   '/stripe/webhook',
   express.raw({ type: 'application/json' }),
