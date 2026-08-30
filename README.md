@@ -1,8 +1,8 @@
-# 🍔 DevBurger API
+# 🍔 MV Burguer — API
 
-![DevBurger](docs/devburger-cover.png)
+![MV Burguer](docs/devburger-cover.png)
 
-API REST do DevBurger, uma aplicação de hamburgueria digital desenvolvida para demonstrar um fluxo completo de e-commerce: autenticação, catálogo, pedidos, gestão administrativa e pagamentos online.
+API REST do MV Burguer, uma aplicação de hamburgueria digital desenvolvida para demonstrar um fluxo completo de e-commerce: autenticação, catálogo, pedidos, gestão administrativa e pagamentos online.
 
 O backend centraliza as regras de negócio, protege os recursos com JWT, calcula os valores dos pedidos a partir dos dados persistidos e integra o processamento de pagamentos com Stripe.
 
